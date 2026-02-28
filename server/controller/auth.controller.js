@@ -213,7 +213,7 @@ exports.changePassword = async (req, res) => {
                 await User.findByIdAndUpdate(result._id, { accessToken: null })
                 return res.status(400).json({ message: "invalid token" })
             }
-            const hash = bcrypt.hash(password, 10)
+            const hash = await bcrypt.hash(password, 10)
             await User.findByIdAndUpdate(result._id, { password: hash })
             res.status(200).json({ message: "changePassword success" })
         })
