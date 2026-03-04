@@ -15,7 +15,7 @@ exports.getAllTodos = async (req, res) => {
 }
 exports.getProfile = async (req, res) => {
     try {
-        const result = await User.findById(req.user).select("name email mobile role profilePic")
+        const result = await User.findById(req.user).select("name email mobile role profilePic active")
         // const result = await User.find({ role: "employee" }).select("-password")  it will send all data without password 
         res.status(200).json({ message: "get profile success", result })
     } catch (error) {
@@ -27,7 +27,7 @@ exports.getProfile = async (req, res) => {
 exports.updateProfile = async (req, res) => {
     try {
 
-        const { eid } = req.params
+
         const { name, email, mobile } = req.body
         const body = {}
         if (name) body.name = name

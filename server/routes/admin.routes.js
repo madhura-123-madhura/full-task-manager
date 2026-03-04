@@ -7,7 +7,7 @@ router
     .get("/employee", getAllEmployees)
     .put("/update-employee/:eid", UpdateEmployees)
     .put("/toggle-employee-status/:eid", toggletEmployeestatus)
-    .delete("/delete-employee/:eid", deleteEmployee)
+    .put("/delete-employee/:eid", deleteEmployee)
     .put("/restore-employee/:eid", restoreEmployee)
     .delete("/remove-employee/:eid", permanuntDeleteEmployee)
 
