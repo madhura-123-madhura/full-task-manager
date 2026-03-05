@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 const EmployeeNavbar = () => {
@@ -10,9 +11,8 @@ const EmployeeNavbar = () => {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div className="navbar-nav">
-                        <a className="nav-link active" href="#">Home</a>
-                        <a className="nav-link" href="#">Features</a>
-                        <a className="nav-link" href="#">Pricing</a>
+                        <Link className="nav-link active" href="/employee">Dashbord</Link>
+                        <Link className="nav-link" href="/employee/profile">Profile</Link>
                     </div>
                 </div>
             </div>

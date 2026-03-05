@@ -61,5 +61,6 @@ export const {
     useGetTodosQuery,
     useUpdateTodoMutation,
     useGetProfileQuery,
-    useUpdateProfileMutation
+    useUpdateProfileMutation,
+    useLazyGetTodosQuery,
 } = employeeApi

@@ -8,7 +8,7 @@ const { FRONTEND_URL } = require("./utiles/config.js")
 
 const app = express()
 
-mongoose.connect(process.env.MONGO_ULR)
+mongoose.connect(process.env.DB_ULR)
 
 
 app.use(express.json())
