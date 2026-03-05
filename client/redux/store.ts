@@ -12,6 +12,7 @@ const reduxStore = configureStore({
         [employeeApi.reducerPath]: employeeApi.reducer,
         auth: authSlice
     },
+    devTools: process.env.NEXT_PUBLIC_ENV !== "production",
     middleware: def => def().concat(authApi.middleware, adminApi.middleware, employeeApi.middleware)
 })
 

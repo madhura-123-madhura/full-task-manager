@@ -27,6 +27,10 @@ const authSlice = createSlice({
         .addMatcher(authApi.endpoints.signin.matchFulfilled, (state, { payload }) => {
             state.admin = payload.result
         })
+        .addMatcher(authApi.endpoints.signin.matchFulfilled, (state, { payload }) => {
+            state.admin = null
+        })
+
 
 
 })
