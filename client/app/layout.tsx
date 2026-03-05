@@ -7,6 +7,7 @@ import Script from "next/script";
 import "react-toastify/ReactToastify.css"
 import "bootstrap-icons/font/bootstrap-icons.css"
 import { ToastContainer } from "react-toastify";
+import { APP_URL } from "@/constant/config";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -35,6 +36,7 @@ export default function RootLayout({
         <ToastContainer />
         <ReduxProvider>
           <div> mode:{process.env.NEXT_PUBLIC_ENV}</div>
+          <div> app url:{APP_URL}</div>
           {children}
         </ReduxProvider>
         <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" />
