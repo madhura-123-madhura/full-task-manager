@@ -70,7 +70,7 @@ export interface TODO_CREATE_REQUEST {
     desc: string
     priority: string
     employee: string
-    due: Date
+    due: string
 }
 export type TODO_CREATE_RESPONSE = {
     message: string
