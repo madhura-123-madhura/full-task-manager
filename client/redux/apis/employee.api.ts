@@ -45,7 +45,7 @@ export const employeeApi = createApi({
             updateProfile: builder.mutation<COMMON_RESPONSE, UPDATE_PROFILE_REQUEST>({
                 query: profileData => {
                     return {
-                        url: "/profile-update/" + profileData._id,
+                        url: "/profile-update",
                         method: "PUT",
                         body: profileData
                     }

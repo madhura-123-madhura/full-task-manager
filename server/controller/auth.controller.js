@@ -45,11 +45,20 @@ exports.signin = async (req, res) => {
             })
         }
         const token = jwt.sign({ _id: result._id }, process.env.JWT_KEY, { expiresIn: "1d" })
-        res.cookie("TOKEN", token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === PRODUCTION,
-            maxAge: 1000 * 60 * 60 * 24
-        })
+        if (result.role === "admin") {
+            res.cookie("ADMIN", token, {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === PRODUCTION,
+                maxAge: 1000 * 60 * 60 * 24
+            })
+        } else {
+            res.cookie("EMPLOYEE", token, {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === PRODUCTION,
+                maxAge: 1000 * 60 * 60 * 24
+            })
+        }
+
         res.status(200).json({
             message: "login success", result: {
                 name: result.name,
@@ -99,9 +108,19 @@ exports.registerEmployee = async (req, res) => {
 
     }
 }
-exports.signout = async (req, res) => {
+exports.signoutAdmin = async (req, res) => {
     try {
-        res.clearCookie("TOKEN")
+        res.clearCookie("ADMIN")
+        res.status(200).json({ message: "logout success" })
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "unabel to logout employee" })
+
+    }
+}
+exports.signoutEmployee = async (req, res) => {
+    try {
+        res.clearCookie("EMPLOYEE")
         res.status(200).json({ message: "logout success" })
     } catch (error) {
         console.log(error);
@@ -168,11 +187,20 @@ exports.verifyOTP = async (req, res) => {
             return res.status(400).json({ message: " otp expires" })
         }
         const token = jwt.sign({ _id: result._id }, process.env.JWT_KEY, { expiresIn: "1d" })
-        res.cookie("TOKEN", token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === PRODUCTION,
-            maxAge: 1000 * 60 * 60 * 24
-        })
+        if (result.role === "admin") {
+            res.cookie("ADMIN", token, {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === PRODUCTION,
+                maxAge: 1000 * 60 * 60 * 24
+            })
+        } else {
+            res.cookie("EMPLOYEE", token, {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === PRODUCTION,
+                maxAge: 1000 * 60 * 60 * 24
+            })
+        }
+
         res.status(200).json({
             message: "login success", result: {
                 name: result.name,

@@ -22,7 +22,7 @@ export const authApi = createApi({
                     }
                 },
                 transformResponse: (data: SIGNIN_RESPONSE) => {
-                    setStorage(data)
+                    setStorage(data, data.result.role)
                     return data
                 }
             }),
@@ -38,12 +38,23 @@ export const authApi = createApi({
             signout: builder.mutation<void, void>({
                 query: () => {
                     return {
-                        url: "/signout",
+                        url: "/signout-employee",
                         method: "POST",
                     }
                 },
                 transformResponse: () => {
-                    removeStorage()
+                    removeStorage("employee")
+                }
+            }),
+            signoutAdmin: builder.mutation<void, void>({
+                query: () => {
+                    return {
+                        url: "/signout-admin",
+                        method: "POST",
+                    }
+                },
+                transformResponse: () => {
+                    removeStorage("admin")
                 }
             }),
             sendOtp: builder.mutation<SEND_OTP_RESPONSE, SEND_OTP_REQUEST>({
@@ -63,6 +74,10 @@ export const authApi = createApi({
                         body: userData
                     }
                 },
+                transformResponse: (data: VERIFY_OTP_RESPONSE) => {
+                    setStorage(data, data.result.role)
+                    return data
+                }
             }),
             forgetPassword: builder.mutation<FORGET_PASSWORD_RESPONSE, FORGET_PASSWORD_REQUEST>({
                 query: userData => {
@@ -94,5 +109,6 @@ export const {
     useSendOtpMutation,
     useVerifyOtpMutation,
     useForgetPasswordMutation,
-    useChangePasswordMutation
+    useChangePasswordMutation,
+    useSignoutAdminMutation
 } = authApi

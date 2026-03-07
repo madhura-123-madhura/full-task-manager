@@ -40,8 +40,9 @@ exports.adminProtected = async (req, res, next) => {
 
 exports.protect = (role) => async (req, res, next) => {
     try {
+        const cookieName = role === "admin" ? "ADMIN" : "EMPLOYEE"
         // check for cookie
-        const TOKEN = req.cookies.TOKEN//cookie name from auth.controller
+        const TOKEN = req.cookies[cookieName]//cookie name from auth.controller
         //     our variable
         if (!TOKEN) {
             return res.status(401).json({

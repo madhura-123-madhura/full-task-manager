@@ -8,7 +8,7 @@ import React from 'react'
 import { toast } from 'react-toastify'
 
 const EmployeeNavbar = () => {
-    const { admin } = useAppSelector(state => state.auth)
+    const { employee } = useAppSelector(state => state.auth)
     const [logout] = useSignoutMutation()
     const router = useRouter()
     const handleLogout = async () => {
@@ -37,8 +37,8 @@ const EmployeeNavbar = () => {
                     </div>
                 </div>
                 {
-                    admin && <div className="dropdown" >
-                        <button className='btn btn-light' data-bs-toggle="dropdown">welcom {admin.name}</button>
+                    employee && <div className="dropdown" >
+                        <button className='btn btn-light' data-bs-toggle="dropdown">welcom {employee.name}</button>
                         <div className="dropdown-menu">
                             <li className='dropdown-item'> <Link href="/employee/profile" className='nav-link'>profile</Link></li>
                             <li className='dropdown-item'> <Link href="/employee" className='nav-link'>dashbord</Link></li>

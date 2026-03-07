@@ -20,6 +20,7 @@ export type TOGGLE_TODO_REQUEST = {
 export type GET_PROFILE_RESPONSE = {
     message: string,
     result: {
+        _id: string
         name: string,
         email: string,
         mobile: string,
